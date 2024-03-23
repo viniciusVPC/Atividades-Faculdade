@@ -25,7 +25,7 @@ void Crescente(int v[], int tamanho){
     }
 
     printf("Prontinho! O seu vetor foi organizado de forma crescente!\nAí está ele:\n\n| ");
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < tamanho; i++){
         printf("%d | ", tempV[i]);
     }
     free(tempV);
@@ -44,32 +44,64 @@ void Decrescente(int v[], int tamanho){
         v[i] = -1;
     }
         printf("Prontinho! O seu vetor foi organizado de forma decrescente!\nAí está ele:\n\n| ");
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < tamanho; i++){
         printf("%d | ", tempV[i]);
     }
     free(tempV);
 }
 
+
 int main(){
     setlocale(LC_ALL, "Portuguese");
-    int vetor[] = {4, 9, 7, 8, 3, 1, 0, 5, 2, 6};
-    int ordem = 0;
-    printf("Seja bem vindo ao Ordenador de Vetores 3000!\nO vetor que vamos ordenar é o seguinte:\n\n| ");
+    int *vetor;
+    int ordem = 0, tamanhoVetor;
+    bool erro = false;
 
-    for(int i = 0; i < 10; i++){
+    do{
+        printf("Sem mais delongas, insira o tamanho que você quer que o seu vetor tenha: ");
+        if(scanf("%d", &tamanhoVetor)){
+            erro = false;
+        }
+        else{
+            printf("Por favor, insira um número!!!\n");
+            fflush(stdin);
+            erro = true;
+        }
+    }
+    while(erro);
+    vetor = (int *)malloc(tamanhoVetor * sizeof(int));
+    for(int i = 0; i < tamanhoVetor; i++){
+    printf("Insira o valor do %do elemento do seu vetor: ", i+1);
+    scanf("%d", &vetor[i]);
+    }
+
+    printf("\nLegal, vamos ver como ficou o seu vetor: \n\n| ");
+    for(int i = 0; i < tamanhoVetor; i++){
         printf("%d | ", vetor[i]);
     }
-    printf("\n\nSelecione se você quer ordená-lo de forma Crescente ou Decrescente!\n|1| - Crescente\n|2| - Decrescente\n");
-    scanf("%d", &ordem);
-    if(isdigit(ordem)) printf("É um número");
-    else printf("Não é um número");
+
+    do{
+        erro = false;
+        printf("\n\nAgora, selecione se você quer ordená-lo de forma Crescente ou Decrescente!\n|1| - Crescente\n|2| - Decrescente\n");
+        scanf("%d", &ordem);
+        if(ordem == 1 || ordem == 2){
+            erro = false;
+        }
+        else {
+            printf("Por favor, digite um valor numérico dentro das opções disponíveis.\n");
+            fflush(stdin);
+            erro = true;
+        }
+    }
+    while(erro);
+
     printf("\n");
 
     if(ordem == 1){
-        Crescente(vetor, 10);
+        Crescente(vetor, tamanhoVetor);
     }
     else if(ordem == 2){
-        Decrescente(vetor, 10);
+        Decrescente(vetor, tamanhoVetor);
     }
     else{
     printf("Desculpa. Algo deu errado.");

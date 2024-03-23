@@ -42,6 +42,7 @@ int main(){
         scanf("%d", &operacao);
         if(operacao >= 5 || operacao == 0){
                 printf("A operação inserida não existe.");
+                fflush(stdin);
                 erro = true;
         }
         else erro = false;
