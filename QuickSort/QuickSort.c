@@ -1,4 +1,4 @@
-//Arquivo C
+//Algoritmo de ordenação por QuickSort escrito em C
 #include<stdio.h>
 
 int separar(int p, int r, int v[]){
